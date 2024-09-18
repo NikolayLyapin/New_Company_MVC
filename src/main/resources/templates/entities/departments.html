@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DEPARTMENTS</title>
+</head>
+<body>
+<div class="container">
+    <div class="modal">
+
+        <form class="form" th:object="${department}" method="post" th:action="@{${department.id == null ?
+                                                                                            '/department' :
+                                                                                            '/department/' + department.id}}">
+            <input type="text" class="inputText" th:field="*{name}">
+            <input type="text" class="inputText" th:field="*{note}">
+            <input type="text" class="inputText" name="parentDepartmentId">
+            <input type="submit" class="inputSubmit" th:value="${department.id == null ? 'save' : 'update'}">
+        </form>
+        <h3>[[${table}]]</h3>
+    </div>
+</div>
+</body>
+</html>

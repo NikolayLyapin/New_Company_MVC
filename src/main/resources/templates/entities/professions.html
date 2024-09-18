@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>PROFESSIONS</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="container">
+    <div class="modal">
+        <th:block th:insert="~{/layouts/professionFormLayout.html::professionFormLayout(${profession})}"/>
+
+<!--        <form class="form" th:object="${profession}" method="post" th:action="@{${profession.id == null ?-->
+<!--                                                                                    '/professions' :-->
+<!--                                                                                    '/professions/' + profession.id}}">-->
+<!--            <input type="text" class="inputText" th:field="*{name}">-->
+<!--            <input type="text" class="inputText" th:field="*{note}">-->
+<!--            <input type="submit" class="inputSubmit" th:value="${profession.id == null ? 'save' : 'update'}">-->
+<!--        </form>-->
+
+        <h3>[[${table}]]</h3>
+        <table class="table">
+            <thead>
+            <th>id</th>
+            <th>name</th>
+            <th>note</th>
+            <th>update</th>
+            <th>delete</th>
+            </thead>
+            <tbody>
+            <th:block th:each="prof: ${all}">
+                <tr>
+                    <td>[[${prof.id}]]</td>
+                    <td>[[${prof.name}]]</td>
+                    <td>[[${prof.note}]]</td>
+                    <td>
+                        <!--                            <a class="a_button" th:href="@{'/professions/' + ${profession.id}}">-->
+                        <a class="a_button" th:href="@{${'/professions/' + prof.id}}">
+                            update
+                        </a>
+                    </td>
+                    <td>
+<!--                        <form method="post" th:action="@{'/professions/del/' + ${prof.id}}">-->
+<!--                            <input type="submit" class="a_button" value="delete">-->
+<!--                        </form>-->
+                        <form method="post" action="/professions/del">
+                            <input type="text" name="id" th:value="${prof.id}" hidden>
+                            <input type="text" name="error" th:value="${prof.birthDate}">
+                            <input type="submit" class="a_button" value="delete">
+                        </form>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

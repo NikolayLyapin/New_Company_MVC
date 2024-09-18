@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--ссылка на объект не является локальной - название должно быть, как и в родительской странице-->
+    <th:block th:fragment="professionFormLayout(profession)">
+        <form class="form" th:object="${profession}" method="post"
+              th:action="@{${profession.id == null ? '/professions' : '/professions/update'}}">
+            <input type="text" class="inputText" th:field="*{id}" hidden>
+            <input type="text" class="inputText" th:field="*{name}">
+            <input type="text" class="inputText" th:field="*{note}">
+            <input type="submit" th:value="${profession.id == null} ? 'save' : 'update'">
+        </form>
+    </th:block>
+</body>
+</html>

@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:6543/Company_MVC
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+server:
+  port: 9000
+
